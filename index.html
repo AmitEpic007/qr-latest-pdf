@@ -18,52 +18,65 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-
-  <!-- Cache control -->
-  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-
-  <title>Select Folder</title>
-
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin-top: 60px;
-    }
-    button {
-      padding: 15px 30px;
-      margin: 10px;
-      font-size: 18px;
-      cursor: pointer;
-    }
-  </style>
-</head>
-
-<body>
-  <h2>Select Folder</h2>
-
-  <button onclick="openFile('A')">Folder A</button>
-  <button onclick="openFile('B')">Folder B</button>
-
-  <script>
-    function openFile(folder) {
-      // cache-busting timestamp
-      const ts = new Date().getTime();
-      const res = await fetch(`/latest.json?v=${ts}`, { cache: "no-store" });
-      const map = await res.json();
-
-      if (!map[folder]) {
-        alert("No file found for folder " + folder);
-        return;
+  <head>
+    <meta charset="UTF-8">
+  
+    <!-- Cache control -->
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+  
+    <title>Select Folder</title>
+  
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 60px;
       }
-      // change file.png if needed
-      location.replace(`${folder}/${map[folder]}?v=${ts}`);
-    }
-  </script>
-</body>
+      button {
+        padding: 15px 30px;
+        margin: 10px;
+        font-size: 18px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <h2>Select Folder</h2>
+  
+    <button onclick="openFile('A')">Folder A</button>
+    <button onclick="openFile('B')">Folder B</button>
+  
+    <script>
+      async function openFile(folder) {
+        try {
+          const ts = Date.now(); // cache busting
+    
+          const res = await fetch(`latest.json?v=${ts}`, {
+            cache: "no-store"
+          });
+    
+          if (!res.ok) {
+            throw new Error("Failed to load latest.json");
+          }
+    
+          const map = await res.json();
+    
+          if (!map[folder]) {
+            alert("No file found for folder " + folder);
+            return;
+          }
+    
+          location.replace(`${folder}/${map[folder]}?v=${ts}`);
+        } catch (err) {
+          console.error(err);
+          alert("Error loading file mapping");
+        }
+      }
+    </script>
+  
+  </body>
 </html>
 
