@@ -53,7 +53,13 @@
     function openFile(folder) {
       // cache-busting timestamp
       const ts = new Date().getTime();
+      const res = await fetch(`/latest.json?v=${ts}`, { cache: "no-store" });
+      const map = await res.json();
 
+      if (!map[folder]) {
+        alert("No file found for folder " + folder);
+        return;
+      }
       // change file.png if needed
       location.replace(`${folder}/abc.pdf?v=${ts}`);
     }
