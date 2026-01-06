@@ -167,52 +167,45 @@
 </head>
 
 <body>
-  <div class="container">
-
-    <div class="header">
-      <div class="logo">THE CORPORATE</div>
-      <div class="tagline">Professional Spoken English & Career Skills</div>
-    </div>
-
-    <div class="card">
-      <div class="card-title">Course Syllabus</div>
-      <div class="card-subtitle">
-        Tap a course below to view the detailed syllabus
+    <div class="container">
+  
+      <div class="header">
+        <div class="logo">THE CORPORATE</div>
+        <div class="tagline">Professional Spoken English & Career Skills</div>
       </div>
-
-      <div class="course-list">
-
-        <button class="course-btn" onclick="openFile('A')">
-          <div class="icon">🗣️</div>
-          <div class="course-info">
-            <div class="course-name">Spoken English</div>
-            <div class="course-desc">
-              Grammar, fluency, confidence & daily communication
+  
+      <div class="card">
+        <div class="card-title">Course Syllabus</div>
+        <div class="card-subtitle">
+          Tap a course below to view the detailed syllabus
+        </div>
+  
+        <div class="course-list">
+  
+          <button class="course-btn" onclick="openFile('A')">
+            <div class="icon">🗣️</div>
+            <div class="course-info">
+              <div class="course-name">Spoken English</div>
+              <div class="course-desc">
+                Grammar, fluency, confidence & daily communication
+              </div>
             </div>
-          </div>
-        </button>
-
-        <button class="course-btn" onclick="openFile('B')">
-          <div class="icon">💼</div>
-          <div class="course-info">
-            <div class="course-name">Interview Skills</div>
-            <div class="course-desc">
-              HR rounds, mock interviews & corporate etiquette
+          </button>
+  
+          <button class="course-btn" onclick="openFile('B')">
+            <div class="icon">💼</div>
+            <div class="course-info">
+              <div class="course-name">Interview Skills</div>
+              <div class="course-desc">
+                HR rounds, mock interviews & corporate etiquette
+              </div>
             </div>
-          </div>
-        </button>
-
+          </button>
+  
+        </div>
       </div>
     </div>
-  </div>
-  </head>
-  
-  <body>
-    <h2>Select Folder</h2>
-  
-    <button onclick="openFile('A')">Folder A</button>
-    <button onclick="openFile('B')">Folder B</button>
-  
+  <!--Below Defined JS logic -->
     <script>
       async function openFile(folder) {
         try {
